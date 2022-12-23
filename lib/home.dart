@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'city_card.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List cities = [
+    {
+      'name': 'Paris',
+      'image': 'assets/images/paris.jpeg',
+      'checked': false,
+    },
+    {
+      'name': 'Nice',
+      'image': 'assets/images/nice.jpeg',
+      'checked': false,
+    },
+    {
+      'name': 'Lyon',
+      'image': 'assets/images/lyon.jpeg',
+      'checked': false,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +51,12 @@ class Home extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            CityCard(),
-          ],
+          children: cities
+              .map((citie) => CityCard(
+                  name: citie['name'],
+                  image: citie['image'],
+                  checked: citie['checked']))
+              .toList(),
         ),
       ),
     );
