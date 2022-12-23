@@ -27,6 +27,13 @@ class _HomeState extends State<Home> {
     },
   ];
 
+  void switchCheched(city) {
+    var index = cities.indexOf(city);
+    setState(() {
+      cities[index]['checked'] = !cities[index]['checked'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +49,7 @@ class _HomeState extends State<Home> {
           onLongPress: () {
             print("Long Press on Title");
           },
+          child: const Text("Flutter Travel"),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
@@ -53,9 +61,11 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: cities
               .map((citie) => CityCard(
-                  name: citie['name'],
-                  image: citie['image'],
-                  checked: citie['checked']))
+                    name: citie['name'],
+                    image: citie['image'],
+                    checked: citie['checked'],
+                    updateChecked: () => switchCheched(citie),
+                  ))
               .toList(),
         ),
       ),
