@@ -13,9 +13,14 @@ class CityCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            Image.asset(
-              'assets/images/lyon.jpeg',
-              fit: BoxFit.cover,
+            InkWell(
+              onTap: () {
+                print('Tap on the card');
+              },
+              child: Ink.image(
+                image: const AssetImage('assets/images/lyon.jpeg'),
+                fit: BoxFit.cover,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10),

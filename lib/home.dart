@@ -9,7 +9,17 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.home),
-        title: const Text("Flutter Travel"),
+        title: InkWell(
+          splashColor: Colors.white,
+          radius: 100,
+          highlightColor: Colors.amber,
+          onTap: () {
+            print("Simple tap on Title");
+          },
+          onLongPress: () {
+            print("Long Press on Title");
+          },
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue,
         actions: const <Widget>[Icon(Icons.more_vert)],
