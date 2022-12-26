@@ -27,10 +27,17 @@ class _CityState extends State<City> {
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
-        child: ListView.builder(
+        child: ListView.separated(
           itemCount: widget.activities.length,
-          itemBuilder: (context, index) =>
-              ActivityCard(activity: widget.activities[index]),
+          itemBuilder: (context, index) => ActivityCard(
+            activity: widget.activities[index],
+          ),
+          separatorBuilder: (context, index) => const Divider(
+            color: Colors.blue,
+            endIndent: 100,
+            indent: 100,
+            height: 50,
+          ),
         ),
       ),
     );
