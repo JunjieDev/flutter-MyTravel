@@ -27,17 +27,12 @@ class _CityState extends State<City> {
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
-        child: ListView.separated(
+        child: GridView.builder(
           itemCount: widget.activities.length,
-          itemBuilder: (context, index) => ActivityCard(
-            activity: widget.activities[index],
-          ),
-          separatorBuilder: (context, index) => const Divider(
-            color: Colors.blue,
-            endIndent: 100,
-            indent: 100,
-            height: 50,
-          ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2),
+          itemBuilder: (context, index) =>
+              ActivityCard(activity: widget.activities[index]),
         ),
       ),
     );
