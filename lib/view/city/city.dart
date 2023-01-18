@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/models/activity.model.dart';
 import 'package:flutter_travel/data/data.dart' as data;
@@ -26,13 +28,39 @@ class _CityState extends State<City> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.all(10),
-        child: GridView.builder(
-          itemCount: widget.activities.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
-          itemBuilder: (context, index) =>
-              ActivityCard(activity: widget.activities[index]),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              height: 200,
+              color: Colors.white,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      const Expanded(
+                        child: Text("Choose a date"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => {},
+                        child: const Text('Select a date'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 1,
+                crossAxisSpacing: 1,
+                children: widget.activities
+                    .map((activity) => ActivityCard(activity: activity))
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
