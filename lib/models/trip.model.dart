@@ -1,5 +1,3 @@
-import 'dart:html';
-
 class Trip {
   String city;
   List<String> activities;
