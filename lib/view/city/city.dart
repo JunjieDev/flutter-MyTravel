@@ -22,8 +22,8 @@ class _CityState extends State<City> {
   void setDate() {
     showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now().add(const Duration(days: 1)),
+      initialDate: DateTime.now().add(const Duration(days: 1)),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2026),
     ).then((newDate) {
       if (newDate != null) {
