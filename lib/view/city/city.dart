@@ -19,6 +19,21 @@ class City extends StatefulWidget {
 class _CityState extends State<City> {
   Trip mytrip = Trip(city: 'Paris', activities: [], date: DateTime.now());
 
+  void setDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now().add(const Duration(days: 1)),
+      lastDate: DateTime(2026),
+    ).then((newDate) {
+      if (newDate != null) {
+        setState(() {
+          mytrip.date = newDate;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +61,7 @@ class _CityState extends State<City> {
                         child: Text(DateFormat('d/M/y').format(mytrip.date)),
                       ),
                       ElevatedButton(
-                        onPressed: () => {},
+                        onPressed: setDate,
                         child: const Text('Select a date'),
                       ),
                     ],
