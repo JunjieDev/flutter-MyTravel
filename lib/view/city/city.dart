@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/models/activity.model.dart';
 import 'package:flutter_travel/models/trip.model.dart';
 import 'package:flutter_travel/data/data.dart' as data;
-import 'package:flutter_travel/view/city/widget/activity_card.dart';
+import 'package:flutter_travel/view/city/widget/activity_list.dart';
+import 'package:flutter_travel/view/city/widget/trip_activity_list.dart';
 import 'package:flutter_travel/view/city/widget/trip_overview.dart';
 
 class City extends StatefulWidget {
@@ -16,6 +17,7 @@ class City extends StatefulWidget {
 
 class _CityState extends State<City> {
   Trip mytrip = Trip(city: 'Paris', activities: [], date: DateTime.now());
+  int index = 0;
 
   void setDate() {
     showDatePicker(
@@ -29,6 +31,12 @@ class _CityState extends State<City> {
           mytrip.date = newDate;
         });
       }
+    });
+  }
+
+  void switchIndex(newIndex) {
+    setState(() {
+      index = newIndex;
     });
   }
 
@@ -52,17 +60,28 @@ class _CityState extends State<City> {
               mytrip: mytrip,
             ),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 1,
-                crossAxisSpacing: 1,
-                children: widget.activities
-                    .map((activity) => ActivityCard(activity: activity))
-                    .toList(),
-              ),
+              child: index == 0
+                  ? ActivityList(
+                      activities: widget.activities,
+                    )
+                  : const TripActivityList(),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Exploration',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.stars),
+            label: 'My Activity',
+          ),
+        ],
+        onTap: switchIndex,
       ),
     );
   }
