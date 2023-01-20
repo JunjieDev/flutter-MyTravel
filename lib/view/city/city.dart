@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/models/activity.model.dart';
-import 'package:flutter_travel/data/data.dart' as data;
 import 'package:flutter_travel/models/trip.model.dart';
+import 'package:flutter_travel/data/data.dart' as data;
 import 'package:flutter_travel/view/city/widget/activity_card.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_travel/view/city/widget/trip_overview.dart';
 
 class City extends StatefulWidget {
   final List<Activity> activities = data.activities;
@@ -39,7 +37,7 @@ class _CityState extends State<City> {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.chevron_left),
-        title: const Text('Paris'),
+        title: const Text('Travel organisation'),
         centerTitle: true,
         backgroundColor: Colors.blue,
         actions: const <Widget>[
@@ -49,25 +47,9 @@ class _CityState extends State<City> {
       body: Container(
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              height: 200,
-              color: Colors.white,
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(DateFormat('d/M/y').format(mytrip.date)),
-                      ),
-                      ElevatedButton(
-                        onPressed: setDate,
-                        child: const Text('Select a date'),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+            TripOverview(
+              setDate: setDate,
+              mytrip: mytrip,
             ),
             Expanded(
               child: GridView.count(
