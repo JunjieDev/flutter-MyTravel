@@ -16,8 +16,14 @@ class City extends StatefulWidget {
 }
 
 class _CityState extends State<City> {
-  Trip mytrip = Trip(city: 'Paris', activities: [], date: DateTime.now());
-  int index = 0;
+  late Trip mytrip;
+  late int index;
+
+  @override
+  void initState() {
+    mytrip = Trip(city: 'Paris', activities: [], date: null);
+    index = 0;
+  }
 
   void setDate() {
     showDatePicker(
@@ -37,6 +43,14 @@ class _CityState extends State<City> {
   void switchIndex(newIndex) {
     setState(() {
       index = newIndex;
+    });
+  }
+
+  void toggleActivity(String id) {
+    setState(() {
+      mytrip.activities.contains(id)
+          ? mytrip.activities.remove(id)
+          : mytrip.activities.add(id);
     });
   }
 
@@ -63,6 +77,8 @@ class _CityState extends State<City> {
               child: index == 0
                   ? ActivityList(
                       activities: widget.activities,
+                      selectedActivities: mytrip.activities,
+                      toggleActivity: toggleActivity,
                     )
                   : const TripActivityList(),
             ),
