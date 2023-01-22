@@ -1,13 +1,13 @@
 class Activity {
   String name;
   String image;
-  String? id;
+  String id;
   String city;
 
   Activity({
     required this.name,
     required this.image,
-    id,
+    required this.id,
     required this.city,
   });
 }

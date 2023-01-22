@@ -37,7 +37,7 @@ class ActivityCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       if (isSelected)
-                        Icon(
+                        const Icon(
                           Icons.check,
                           size: 40,
                           color: Colors.white,
@@ -49,7 +49,10 @@ class ActivityCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       activity.name,
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),

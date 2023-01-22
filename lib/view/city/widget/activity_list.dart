@@ -4,7 +4,7 @@ import 'package:flutter_travel/view/city/widget/activity_card.dart';
 
 class ActivityList extends StatelessWidget {
   final List<Activity> activities;
-  final VoidCallback toggleActivity;
+  final Function toggleActivity;
   final List<String> selectedActivities;
 
   const ActivityList({
@@ -21,11 +21,13 @@ class ActivityList extends StatelessWidget {
       mainAxisSpacing: 1,
       crossAxisSpacing: 1,
       children: activities
-          .map((activity) => ActivityCard(
-                activity: activity,
-                isSelected: selectedActivities.contains(activity.id),
-                toggleActivity: () => toggleActivity(activity.id),
-              ))
+          .map(
+            (activity) => ActivityCard(
+              activity: activity,
+              isSelected: selectedActivities.contains(activity.id),
+              toggleActivity: () => toggleActivity(activity.id),
+            ),
+          )
           .toList(),
     );
   }
