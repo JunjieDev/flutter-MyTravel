@@ -55,7 +55,7 @@ class TripOverview extends StatelessWidget {
             children: <Widget>[
               const Expanded(
                 child: Text(
-                  'Montant / personne',
+                  'Amount / Person',
                   style: TextStyle(fontSize: 20),
                 ),
               ),

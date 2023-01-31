@@ -28,7 +28,7 @@ class ActivityCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: <Widget>[
                 Expanded(
@@ -47,11 +47,14 @@ class ActivityCard extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    Text(
-                      activity.name,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
+                    Flexible(
+                      child: FittedBox(
+                        child: Text(activity.name,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white
+                          ),
+                        ),
                       ),
                     ),
                   ],
