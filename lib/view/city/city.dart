@@ -54,6 +54,12 @@ class _CityState extends State<City> {
     });
   }
 
+  List<Activity> get tripActivities {
+    return widget.activities
+      .where((activity) => mytrip.activities.contains(activity.id))
+      .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +81,14 @@ class _CityState extends State<City> {
             ),
             Expanded(
               child: index == 0
-                  ? ActivityList(
-                      activities: widget.activities,
-                      selectedActivities: mytrip.activities,
-                      toggleActivity: toggleActivity,
-                    )
-                  : const TripActivityList(),
+                ? ActivityList(
+                    activities: widget.activities,
+                    selectedActivities: mytrip.activities,
+                    toggleActivity: toggleActivity,
+                  )
+                : TripActivityList(
+                    activities: tripActivities,
+                  ),
             ),
           ],
         ),
