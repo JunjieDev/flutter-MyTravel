@@ -60,6 +60,12 @@ class _CityState extends State<City> {
       .toList();
   }
 
+  void deleteTripActivity(String id){
+    setState(() {
+      mytrip.activities.remove(id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +94,7 @@ class _CityState extends State<City> {
                   )
                 : TripActivityList(
                     activities: tripActivities,
+                    deleteTripActivity: deleteTripActivity,
                   ),
             ),
           ],
